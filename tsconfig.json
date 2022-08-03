@@ -1,0 +1,29 @@
+{
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@core/*": ["core/*"],
+      "@services/*": ["services/*"]
+    },
+    "rootDir": "src",
+    "typeRoots": [
+      "src/@types",
+      "./node_modules/@types",
+      "src/**/*.d.ts"
+    ],
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+    "alwaysStrict": true,
+    "skipLibCheck": true
+  }
+}
