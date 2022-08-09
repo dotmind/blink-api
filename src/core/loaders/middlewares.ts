@@ -16,6 +16,7 @@ export default async (app: Express) => {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.raw({ type: 'application/octet-stream', limit: '50mb' }));
 
   if (isDev) {
     app.use(morgan('combined'));

@@ -19,7 +19,12 @@
 namespace Express {
   interface Request {
     // @XXX: Example override of express
-    message: string;
+    signature?: string;
+    timestamp?: string;
+    fingerprint?: string;
+    version?: string;
+    _path?: string;
+
 
     // ADD_GENERATED_TYPE
     // END_GENERATED

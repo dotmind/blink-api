@@ -1,28 +1,41 @@
-import express, { Application } from 'express';
+import express, { Application } from "express";
 
-import api from '@services/internal/infrastructure/api';
+import api from "@services/internal/infrastructure/api";
 
-import { assertQuery } from '@services/internal/middlewares/assert';
-import { getFile, registerFile } from '@services/files/middlewares';
-import { upload, download } from '@services/files/controllers';
-import { fileBody } from '@services/files/validators';
+import { assertQuery } from "@services/internal/middlewares/assert";
+import {
+  parseHeader,
+  getFile,
+  registerFile,
+  getAll
+} from "@services/files/middlewares";
+import { upload, download, debug } from "@services/files/controllers";
+import { fileBody } from "@services/files/validators";
 
 const router = express.Router();
 
 export default (app: Application) => {
-  app.use(api.scope('files'), router);
+  app.use(api.scope("files"), router);
 
   router.post(
-    '/upload',
-    assertQuery(fileBody),
+    "/upload",
+    // assertQuery(fileBody),
+    parseHeader,
     registerFile,
-    api.controller(upload),
+    api.controller(upload)
   );
 
   router.get(
-    '/download/:id',
+    "/download/:id",
     assertQuery(fileBody),
     getFile,
     api.controller(download)
-  )
+  );
+
+  // @TODO: remove debug route
+  router.get(
+    "/debug",
+    getAll,
+    api.controller(debug)
+  );
 };
