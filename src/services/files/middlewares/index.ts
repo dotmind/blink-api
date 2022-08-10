@@ -5,9 +5,7 @@ import { logger } from '@services/internal/infrastructure/logger';
 import { File } from '@services/files/models';
 
 export const parseHeader = async (req: Request, res: Response, next: NextFunction) => {
-  const { signature } = req.headers;
-  const { fingerprint } = req.headers;
-  const { timestamp } = req.headers;
+  const { signature, fingerprint, timestamp } = req.headers;
 
   if (!signature || !fingerprint || !timestamp) {
     throw new Error('❌ Missing header');
