@@ -1,8 +1,7 @@
 import express, { Application } from "express";
-
 import api from "@services/internal/infrastructure/api";
 
-import { assertBody, assertQuery } from "@services/internal/middlewares/assert";
+import { assertBody } from "@services/internal/middlewares/assert";
 import {
   parseHeader,
   registerFile,
@@ -25,11 +24,7 @@ export default (app: Application) => {
     api.controller(upload)
   );
 
-  router.get(
-    "/download/:id",
-    findOne,
-    api.controller(download)
-  );
+  router.get("/preview/:id", findOne, api.controller(download));
 
   // @TODO: remove debug route
   router.get("/debug", findAll, api.controller(debug));
