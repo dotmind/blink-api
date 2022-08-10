@@ -1,9 +1,12 @@
 import Joi, { ObjectSchema } from 'joi';
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import {
+  NextFunction, Request, RequestHandler, Response,
+} from 'express';
 
 import api from '@services/internal/infrastructure/api';
 import ERROR_CODES from '@services/internal/constants/error-codes';
 
+/* eslint-disable */
 export const assertBodyWithJoiInstance =
   (schema: ObjectSchema): RequestHandler =>
   (req: Request, res: Response, next: NextFunction) => {
@@ -21,7 +24,9 @@ export const assertBodyWithJoiInstance =
     }
   };
 
-export const assertBody = (schema: Object): RequestHandler => assertBodyWithJoiInstance(Joi.object(schema).unknown());
+export const assertBody = (schema: Object): RequestHandler => {
+  return assertBodyWithJoiInstance(Joi.object(schema).unknown());
+};
 
 export const assertQueryWithJoiInstance =
   (schema: ObjectSchema): RequestHandler =>
@@ -46,4 +51,7 @@ export const assertQueryWithJoiInstance =
     }
   };
 
-export const assertQuery = (schema: Object): RequestHandler => assertQueryWithJoiInstance(Joi.object(schema).unknown());
+export const assertQuery = (schema: Object): RequestHandler => {
+  return assertQueryWithJoiInstance(Joi.object(schema).unknown());
+};
+/* eslint-enable */

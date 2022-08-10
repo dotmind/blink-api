@@ -4,7 +4,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
-import { FILE_SIZE_LIMIT } from '@core/constants';
+import { FILE_SIZE_LIMIT } from '@core/constants/upload';
 import config from '@core/config';
 
 const { isDev } = config;

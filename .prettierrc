@@ -1,11 +1,9 @@
 {
-    "bracketSpacing": true,
-    "bracketSameLine": true,
-    "jsxSingleQuote": true,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "always",
-    "printWidth": 130
-  }
-
-  
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "jsxSingleQuote": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "printWidth": 130
+}

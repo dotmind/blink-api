@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { DATE_REQUIRED, STRING_REQUIRED } from '@services/internal/helpers/mongo';
+import { STRING_REQUIRED } from '@services/internal/helpers/mongo';
 
 export interface IFile {
   fingerprint: string;

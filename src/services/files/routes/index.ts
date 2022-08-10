@@ -1,8 +1,10 @@
 import express, { Application } from 'express';
-import api from '@services/internal/infrastructure/api';
 
+import api from '@services/internal/infrastructure/api';
 import { assertBody } from '@services/internal/middlewares/assert';
-import { parseHeader, registerFile, findOne, findAll } from '@services/files/middlewares';
+import {
+  parseHeader, registerFile, findOne, findAll,
+} from '@services/files/middlewares';
 import { upload, preview, debug } from '@services/files/controllers';
 import { requestBody } from '@services/files/validators';
 

@@ -5,13 +5,12 @@ import { logger } from '@services/internal/infrastructure/logger';
 import { File } from '@services/files/models';
 
 export const parseHeader = async (req: Request, res: Response, next: NextFunction) => {
-  const signature = req.headers['signature'];
-  const fingerprint = req.headers['fingerprint'];
-  const timestamp = req.headers['timestamp'];
+  const { signature } = req.headers;
+  const { fingerprint } = req.headers;
+  const { timestamp } = req.headers;
 
   if (!signature || !fingerprint || !timestamp) {
-    console.log('❌ Missing header');
-    throw new Error('Missing header');
+    throw new Error('❌ Missing header');
   }
 
   req.signature = signature as string;
@@ -33,11 +32,13 @@ export const registerFile = async (req: Request, res: Response, next: NextFuncti
       file: req.body,
     });
 
+    /* eslint-disable no-underscore-dangle */
     const path = hasids.encodeHex(file._id.toString());
     file.path = path;
 
     file.save();
     req._path = path;
+    /* eslint-enable no-underscore-dangle */
 
     next();
   } catch (error) {
