@@ -68,7 +68,6 @@ export const findOne = async (
   next();
 };
 
-// @TODO: remove debug middleware
 export const findAll = async (
   req: Request,
   res: Response,
