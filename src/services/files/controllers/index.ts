@@ -4,6 +4,7 @@ import api from "@services/internal/infrastructure/api";
 
 export const upload = async (req: Request, res: Response) => {
   const { _path } = req;
+  
   return api.success(res)({ id: _path });
 };
 

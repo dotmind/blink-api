@@ -1,7 +1,5 @@
 import { STRING } from '@services/internal/helpers/joi';
 
-export const fileBody = {
-  // fingerprint: STRING.required(),
-  // signature: STRING.required(),
-  // timestamp: STRING.required(),
-};
+export const requestBody = {
+  file: STRING.required(),
+}

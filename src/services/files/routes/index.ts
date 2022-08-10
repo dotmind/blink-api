@@ -2,7 +2,7 @@ import express, { Application } from "express";
 
 import api from "@services/internal/infrastructure/api";
 
-import { assertQuery } from "@services/internal/middlewares/assert";
+import { assertBody, assertQuery } from "@services/internal/middlewares/assert";
 import {
   parseHeader,
   registerFile,
@@ -10,7 +10,7 @@ import {
   findAll,
 } from "@services/files/middlewares";
 import { upload, download, debug } from "@services/files/controllers";
-import { fileBody } from "@services/files/validators";
+import { requestBody } from "@services/files/validators";
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ export default (app: Application) => {
 
   router.post(
     "/upload",
-    // assertQuery(fileBody),
+    assertBody(requestBody),
     parseHeader,
     registerFile,
     api.controller(upload)
@@ -27,7 +27,6 @@ export default (app: Application) => {
 
   router.get(
     "/download/:id",
-    assertQuery(fileBody),
     findOne,
     api.controller(download)
   );
