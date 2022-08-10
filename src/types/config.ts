@@ -12,7 +12,7 @@ type ConfigType = {
   isDev: boolean;
   logDir: string;
   database: DatabaseConfigType;
-  api: ApiConfigType,
+  api: ApiConfigType;
 };
 
 export default ConfigType;

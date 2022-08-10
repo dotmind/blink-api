@@ -1,5 +1,5 @@
 import { STRING } from '@services/internal/helpers/joi';
 
-export const exampleQuery = {
-  message: STRING,
+export const requestBody = {
+  file: STRING.required(),
 };

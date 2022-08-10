@@ -11,7 +11,10 @@ const error = (err: Error, _req: Request, res: Response, next: NextFunction) => 
     return next(err);
   }
 
-  return api.error(res, 500)({
+  return api.error(
+    res,
+    500,
+  )({
     message: ERROR_CODES.GLOBAL.BASE,
     error: err?.message,
   });
