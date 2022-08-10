@@ -4,6 +4,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
+import { FILE_SIZE_LIMIT } from '@core/constants';
 import config from '@core/config';
 
 const { isDev } = config;
@@ -16,7 +17,7 @@ export default async (app: Express) => {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.raw({ type: 'application/octet-stream', limit: '50mb' }));
+  app.use(bodyParser.raw({ type: 'application/octet-stream', limit: FILE_SIZE_LIMIT }));
 
   if (isDev) {
     app.use(morgan('combined'));
