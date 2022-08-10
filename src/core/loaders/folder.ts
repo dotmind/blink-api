@@ -17,4 +17,4 @@ const createFolders = () => {
 
 export default () => {
   createFolders();
-}
+};

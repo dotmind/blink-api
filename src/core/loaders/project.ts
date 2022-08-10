@@ -3,10 +3,7 @@ import glob from 'glob';
 
 import config from '@core/config';
 
-const {
-  isDev,
-  srcPath,
-} = config;
+const { isDev, srcPath } = config;
 
 const loadProject = (app: Express) => {
   const prefix = `${process.cwd()}/${srcPath}/services/**/`;

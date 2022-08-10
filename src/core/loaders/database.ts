@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 import config from '@core/config';
 import { logger } from '@services/internal/infrastructure/logger';
 
-const { database: { mongooseUri } } = config;
+const {
+  database: { mongooseUri },
+} = config;
 
 export default async function main() {
   try {

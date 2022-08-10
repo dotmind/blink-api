@@ -1,9 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
-import {
-  DATE_REQUIRED,
-  STRING_REQUIRED,
-} from "@services/internal/helpers/mongo";
+import { DATE_REQUIRED, STRING_REQUIRED } from '@services/internal/helpers/mongo';
 
 export interface IFile {
   fingerprint: string;
@@ -13,6 +10,7 @@ export interface IFile {
 }
 
 // @TODO: set expiration time with mongoose-ttl
+// @TODO: Add file name
 const FileSchema = new Schema<IFile>(
   {
     fingerprint: STRING_REQUIRED,
@@ -34,7 +32,7 @@ const FileSchema = new Schema<IFile>(
         };
       },
     },
-  }
+  },
 );
 
-export const File = model<IFile>("File", FileSchema);
+export const File = model<IFile>('File', FileSchema);
