@@ -1,3 +1,4 @@
+/* eslint-disable */
 namespace Express {
   interface Request {
     signature?: string;
@@ -9,3 +10,4 @@ namespace Express {
     files?: IFile[];
   }
 }
+/* eslint-enable */
