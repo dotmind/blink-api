@@ -5,9 +5,9 @@ import api from "@services/internal/infrastructure/api";
 import { assertQuery } from "@services/internal/middlewares/assert";
 import {
   parseHeader,
-  getFile,
   registerFile,
-  getAll
+  findOne,
+  findAll,
 } from "@services/files/middlewares";
 import { upload, download, debug } from "@services/files/controllers";
 import { fileBody } from "@services/files/validators";
@@ -28,14 +28,10 @@ export default (app: Application) => {
   router.get(
     "/download/:id",
     assertQuery(fileBody),
-    getFile,
+    findOne,
     api.controller(download)
   );
 
   // @TODO: remove debug route
-  router.get(
-    "/debug",
-    getAll,
-    api.controller(debug)
-  );
+  router.get("/debug", findAll, api.controller(debug));
 };

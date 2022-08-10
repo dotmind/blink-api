@@ -34,8 +34,6 @@ export const registerFile = async (
     const { signature, fingerprint } = req;
     const hasids = new Hashids(signature);
 
-    console.log("📄 data: ", req.body);
-
     const file = new File({
       fingerprint,
       signature,
@@ -55,14 +53,29 @@ export const registerFile = async (
   }
 };
 
-export const getFile = async (req: Request, res: Response, next: NextFunction) => {
-  // @TODO: Get file from database and return it
-  logger.info("Get file");
+export const findOne = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const file = await File.findOne({ path: req.params.id });
+
+  if (!file) {
+    res.status(404).send("File not found");
+  }
+
+  req.file = file;
+  next();
 };
 
 // @TODO: remove debug middleware
-export const getAll = async (req: Request, res: Response) => {
+export const findAll = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const files = await File.find();
 
-  return res.json(files);
-}
+  req.files = files;
+  next();
+};
