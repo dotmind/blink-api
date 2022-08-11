@@ -4,6 +4,7 @@ namespace Express {
     signature?: string;
     timestamp?: string;
     fingerprint?: string;
+    filename?: string;
     version?: string;
     _path?: string;
     file?: IFile;
