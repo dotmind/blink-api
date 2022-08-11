@@ -5,7 +5,9 @@ import { logger } from '@services/internal/infrastructure/logger';
 import { File } from '@services/files/models';
 
 export const parseHeader = async (req: Request, res: Response, next: NextFunction) => {
-  const { signature, fingerprint, timestamp, filename } = req.headers;
+  const {
+    signature, fingerprint, timestamp, filename,
+  } = req.headers;
 
   if (!signature || !fingerprint || !timestamp) {
     throw new Error('❌ Missing header');
@@ -28,7 +30,7 @@ export const registerFile = async (req: Request, res: Response, next: NextFuncti
       fingerprint,
       signature,
       buffer: req.body,
-      filename: filename,
+      filename,
     });
 
     /* eslint-disable no-underscore-dangle */
