@@ -5,7 +5,9 @@ import { logger } from '@services/internal/infrastructure/logger';
 import { File } from '@services/files/models';
 
 export const parseHeader = async (req: Request, res: Response, next: NextFunction) => {
-  const { signature, fingerprint, timestamp } = req.headers;
+  const {
+    signature, fingerprint, timestamp, filename,
+  } = req.headers;
 
   if (!signature || !fingerprint || !timestamp) {
     throw new Error('❌ Missing header');
@@ -14,20 +16,21 @@ export const parseHeader = async (req: Request, res: Response, next: NextFunctio
   req.signature = signature as string;
   req.fingerprint = fingerprint as string;
   req.timestamp = timestamp as string;
+  req.filename = filename as string;
 
   next();
 };
 
 export const registerFile = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { signature, fingerprint } = req;
+    const { signature, fingerprint, filename } = req;
     const hasids = new Hashids(signature);
 
-    // @TODO: Get file name from request and save it in database
     const file = new File({
       fingerprint,
       signature,
-      file: req.body,
+      buffer: req.body,
+      filename,
     });
 
     /* eslint-disable no-underscore-dangle */
@@ -49,7 +52,7 @@ export const findOne = async (req: Request, res: Response, next: NextFunction) =
   const file = await File.findOne({ path: req.params.id });
 
   if (!file) {
-    res.status(404).send('File not found');
+    res.status(404).send('❌ File not found');
   }
 
   req.file = file;
