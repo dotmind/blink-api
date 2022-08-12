@@ -5,19 +5,13 @@ import { logger } from '@services/internal/infrastructure/logger';
 import { File } from '@services/files/models';
 
 export const parseHeader = async (req: Request, res: Response, next: NextFunction) => {
-  const {
-    signature, fingerprint, timestamp, filename,
-  } = req.headers;
+  const { filename } = req.headers;
 
-  if (!signature || !fingerprint || !timestamp) {
-    throw new Error('❌ Missing header');
+  if (!filename) {
+    res.status(400).send('Missing filename');
   }
 
-  req.signature = signature as string;
-  req.fingerprint = fingerprint as string;
-  req.timestamp = timestamp as string;
   req.filename = filename as string;
-
   next();
 };
 
@@ -56,13 +50,5 @@ export const findOne = async (req: Request, res: Response, next: NextFunction) =
   }
 
   req.file = file;
-  next();
-};
-
-// @TODO: remove debug findeAll middleware
-export const findAll = async (req: Request, res: Response, next: NextFunction) => {
-  const files = await File.find();
-
-  req.files = files;
   next();
 };

@@ -10,7 +10,7 @@ export interface IFile {
   filename: string;
 }
 
-// @TODO: set expiration time with mongoose-ttl
+// @TODO: Add expiration
 const FileSchema = new Schema<IFile>(
   {
     fingerprint: STRING_REQUIRED,
