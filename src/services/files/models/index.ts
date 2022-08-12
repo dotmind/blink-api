@@ -5,9 +5,9 @@ import { STRING_REQUIRED } from '@services/internal/helpers/mongo';
 export interface IFile {
   fingerprint: string;
   signature: string;
+  filename: string;
   buffer: Buffer;
   path: string;
-  filename: string;
 }
 
 // @TODO: Add expiration

@@ -14,10 +14,12 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
 
   if (!signature || !fingerprint || !timestamp) {
     res.status(401).json({ status: 401, message: 'Unauthorized: missing headers' });
+    return;
   }
 
   if (parseInt(timestamp as string, 10) < Date.now() - SIGNATURE_TIMEOUT) {
     res.status(401).json({ status: 401, message: 'Unauthorized: signature expired' });
+    return;
   }
 
   const encoder = new TextEncoder();
@@ -38,7 +40,11 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
 
   if (signVerify !== signature) {
     res.status(401).json({ status: 401, message: 'Unauthorized: invalid signature' });
+    return;
   }
+
+  req.fingerprint = fingerprint as string;
+  req.signature = signVerify;
 
   next();
 };

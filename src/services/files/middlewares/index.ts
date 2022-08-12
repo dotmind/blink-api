@@ -23,8 +23,8 @@ export const registerFile = async (req: Request, res: Response, next: NextFuncti
     const file = new File({
       fingerprint,
       signature,
-      buffer: req.body,
       filename,
+      buffer: req.body,
     });
 
     /* eslint-disable no-underscore-dangle */
