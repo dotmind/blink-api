@@ -5,12 +5,12 @@ import { STRING_REQUIRED } from '@services/internal/helpers/mongo';
 export interface IFile {
   fingerprint: string;
   signature: string;
+  filename: string;
   buffer: Buffer;
   path: string;
-  filename: string;
 }
 
-// @TODO: set expiration time with mongoose-ttl
+// @TODO: Add expiration
 const FileSchema = new Schema<IFile>(
   {
     fingerprint: STRING_REQUIRED,
