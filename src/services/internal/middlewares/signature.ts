@@ -39,7 +39,7 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
   const signVerify = await buf2hex(keyBuffer);
 
   if (signVerify !== signature) {
-    res.status(401).json({ status: 401, message: 'Unauthorized: invalid signature' });
+    res.status(401).json({ status: 418, message: 'I\'m a teapot with invalid signature' });
     return;
   }
 
