@@ -13,7 +13,7 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
   const secret = process.env.CRYPTO_SECRET;
 
   if (!signature || !fingerprint || !timestamp) {
-    return res.status(401).json({ status: 401, message: 'Unauthorized: missing headers' });
+    res.status(401).json({ status: 401, message: 'Unauthorized: missing headers' });
   }
 
   if (parseInt(timestamp as string, 10) < Date.now() - SIGNATURE_TIMEOUT) {
@@ -37,8 +37,8 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
   const signVerify = await buf2hex(keyBuffer);
 
   if (signVerify !== signature) {
-    return res.status(401).json({ status: 401, message: 'Unauthorized: invalid signature' });
+    res.status(401).json({ status: 401, message: 'Unauthorized: invalid signature' });
   }
 
-  return next();
+  next();
 };
