@@ -46,7 +46,8 @@ export const findOne = async (req: Request, res: Response, next: NextFunction) =
   const file = await File.findOne({ path: req.params.id });
 
   if (!file) {
-    res.status(404).send('❌ File not found');
+    res.status(404).json({ status: 404, message: 'File not found ❌' });
+    return;
   }
 
   req.file = file;
