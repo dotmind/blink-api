@@ -8,6 +8,7 @@ export interface IFile {
   filename: string;
   buffer: Buffer;
   path: string;
+  expireAt: Date;
 }
 
 // @TODO: Add expiration
@@ -21,6 +22,11 @@ const FileSchema = new Schema<IFile>(
     },
     path: STRING_REQUIRED,
     filename: STRING_REQUIRED,
+    expireAt: {
+      type: Date,
+      default: Date.now,
+      index: { expires: '14d' },
+    },
   },
   {
     toJSON: {
