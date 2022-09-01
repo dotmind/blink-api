@@ -34,12 +34,13 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
     ['sign'],
   );
 
-  const buffer = encoder.encode(`${version}:${req.method}:${req.path}:${timestamp}:${fingerprint}`);
+  const path = req.path.replace(/^\//, '').replace(/\/$/, '');
+  const buffer = encoder.encode(`${version}:${req.method}:${path}:${timestamp}:${fingerprint}`);
   const keyBuffer = await webcrypto.subtle.sign('HMAC', cryptoKey, buffer);
   const signVerify = await buf2hex(keyBuffer);
 
   if (signVerify !== signature) {
-    res.status(401).json({ status: 418, message: "I'm a teapot with invalid signature" });
+    res.status(418).json({ status: 418, message: "I'm a teapot with invalid signature" });
     return;
   }
 

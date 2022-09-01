@@ -25,7 +25,7 @@ const FileSchema = new Schema<IFile>(
     expireAt: {
       type: Date,
       default: Date.now,
-      index: { expires: '14d' },
+      index: { expires: '14m' },
     },
   },
   {
