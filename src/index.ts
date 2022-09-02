@@ -11,6 +11,6 @@ const app = express();
 loaders(app).then(() => {
   app.listen(port, () => {
     // eslint-disable-next-line
-    console.log(`Server listen on localhost:${port}`);
+    console.log(`Server listen on http://localhost:${port}`);
   });
 });
