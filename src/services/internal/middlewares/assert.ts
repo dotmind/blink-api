@@ -1,7 +1,5 @@
 import Joi, { ObjectSchema } from 'joi';
-import {
-  NextFunction, Request, RequestHandler, Response,
-} from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import api from '@services/internal/infrastructure/api';
 import ERROR_CODES from '@services/internal/constants/error-codes';

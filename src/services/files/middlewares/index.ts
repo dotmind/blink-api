@@ -53,3 +53,11 @@ export const findOne = async (req: Request, res: Response, next: NextFunction) =
   req.file = file;
   next();
 };
+
+export const sanitizeName = async (req: Request, res: Response, next: NextFunction) => {
+  const { filename } = req;
+  const sanitizedFilename = filename.replace(/<(?:.|\n)*?>/gm, '');
+  req.filename = sanitizedFilename;
+
+  next();
+};
