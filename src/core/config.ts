@@ -12,7 +12,7 @@ const isDev: boolean = String(process.env.NODE_ENV) === 'development';
 
 const corsConfig: CorsConfig = {
   origin: '*',
-  methods: 'GET,POST',
+  methods: 'GET,POST,DELETE',
 };
 
 const config: ConfigType = {
