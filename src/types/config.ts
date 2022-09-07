@@ -6,6 +6,12 @@ export type ApiConfigType = {
   version: string;
 };
 
+export type CorsConfig = {
+  origin: string;
+  methods: string;
+  optionsSuccessStatus?: number;
+};
+
 type ConfigType = {
   port: number;
   srcPath: string;
@@ -13,6 +19,7 @@ type ConfigType = {
   logDir: string;
   database: DatabaseConfigType;
   api: ApiConfigType;
+  cors: CorsConfig;
 };
 
 export default ConfigType;
