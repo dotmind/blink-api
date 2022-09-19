@@ -11,7 +11,7 @@ const apiConfig: ApiConfigType = {
 const isDev: boolean = String(process.env.NODE_ENV) === 'development';
 
 const corsConfig: CorsConfig = {
-  origin: '*',
+  origin: process.env.CORS_ORIGIN,
   methods: 'GET,POST,DELETE',
 };
 
