@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { webcrypto } from 'crypto';
 
+import ERROR_CODES from '@services/internal/constants/error-codes';
 import { SIGNATURE_TIMEOUT } from '@services/internal/constants/requests';
 
 async function buf2hex(buffer: ArrayBuffer): Promise<string> {
@@ -13,12 +14,12 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
   const secret = process.env.CRYPTO_SECRET;
 
   if (!signature || !fingerprint || !timestamp) {
-    res.status(401).json({ status: 401, message: 'Unauthorized: missing headers' });
+    res.status(401).json({ status: 401, message: ERROR_CODES.AUTH.MISSING_HEADERS });
     return;
   }
 
   if (parseInt(timestamp as string, 10) < Date.now() - SIGNATURE_TIMEOUT) {
-    res.status(401).json({ status: 401, message: 'Unauthorized: signature expired' });
+    res.status(401).json({ status: 401, message: ERROR_CODES.AUTH.EXPIRED_SIGNATURE });
     return;
   }
 
@@ -40,7 +41,7 @@ export const checkSignature = async (req: Request, res: Response, next: NextFunc
   const signVerify = await buf2hex(keyBuffer);
 
   if (signVerify !== signature) {
-    res.status(418).json({ status: 418, message: "I'm a teapot with invalid signature" });
+    res.status(418).json({ status: 418, message: ERROR_CODES.AUTH.INVALID_SIGNATURE });
     return;
   }
 
