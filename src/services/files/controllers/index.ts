@@ -13,3 +13,5 @@ export const preview = async (req: Request, res: Response) => {
 
   return api.success(res)({ file: file.buffer, filename: file.filename, expireAt: file.expireAt });
 };
+
+export const deleteFile = async (req: Request, res: Response) => api.success(res)({ message: 'File deleted successfully 🚮' });

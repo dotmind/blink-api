@@ -54,6 +54,13 @@ export const findOne = async (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
+export const deleteOne = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+  await File.deleteOne({ path: id });
+
+  next();
+};
+
 export const sanitizeName = async (req: Request, res: Response, next: NextFunction) => {
   const { filename } = req;
   const sanitizedFilename = filename.replace(/<(?:.|\n)*?>/gm, '');

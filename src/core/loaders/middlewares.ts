@@ -12,7 +12,7 @@ const { isDev } = config;
 export default async (app: Express) => {
   app.disable('x-powered-by');
 
-  app.use(cors());
+  app.use(cors(config.cors));
   app.use(compression());
 
   app.use(bodyParser.json());

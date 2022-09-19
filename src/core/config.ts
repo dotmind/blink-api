@@ -1,4 +1,4 @@
-import ConfigType, { ApiConfigType, DatabaseConfigType } from 'types/config';
+import ConfigType, { ApiConfigType, CorsConfig, DatabaseConfigType } from 'types/config';
 
 const databaseConfig: DatabaseConfigType = {
   mongooseUri: String(process.env.MONGOOSE_URI),
@@ -10,6 +10,11 @@ const apiConfig: ApiConfigType = {
 
 const isDev: boolean = String(process.env.NODE_ENV) === 'development';
 
+const corsConfig: CorsConfig = {
+  origin: process.env.CORS_ORIGIN,
+  methods: 'GET,POST,DELETE',
+};
+
 const config: ConfigType = {
   port: Number(String(process.env.PORT)),
   srcPath: isDev ? 'src' : 'dist',
@@ -17,6 +22,7 @@ const config: ConfigType = {
   logDir: `${process.cwd()}/logs`,
   database: databaseConfig,
   api: apiConfig,
+  cors: corsConfig,
 };
 
 export default config;
