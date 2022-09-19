@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import Hashids from 'hashids';
 
 import ERROR_CODES from '@services/internal/constants/error-codes';
+import api from '@services/internal/infrastructure/api';
 import { logger } from '@services/internal/infrastructure/logger';
 import { File } from '@services/files/models';
 
@@ -9,7 +10,7 @@ export const parseHeader = async (req: Request, res: Response, next: NextFunctio
   const { filename } = req.headers;
 
   if (!filename) {
-    res.status(400).json({ status: 400, message: ERROR_CODES.FILE.MISSING_FILENAME });
+    api.error(res, 400)({ message: ERROR_CODES.FILE.MISSING_FILENAME });
   }
 
   req.filename = filename as string;
@@ -39,7 +40,7 @@ export const registerFile = async (req: Request, res: Response, next: NextFuncti
     next();
   } catch (error) {
     logger.error(error);
-    res.status(500).json({ status: 500, message: ERROR_CODES.FILE.FILE_CANNOT_BE_SAVED });
+    api.error(res, 500)({ message: ERROR_CODES.FILE.FILE_CANNOT_BE_SAVED });
   }
 };
 
@@ -47,7 +48,7 @@ export const findOne = async (req: Request, res: Response, next: NextFunction) =
   const file = await File.findOne({ path: req.params.id });
 
   if (!file) {
-    res.status(404).json({ status: 404, message: ERROR_CODES.FILE.NOT_FOUND });
+    api.error(res, 404)({ message: ERROR_CODES.FILE.NOT_FOUND });
     return;
   }
 
