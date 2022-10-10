@@ -25,8 +25,7 @@ const FileSchema = new Schema<IFile>(
     expireAt: {
       type: Date,
       default: Date.now,
-      // @TODO Add right expiration time when deploying
-      index: { expires: '14m' },
+      index: { expires: process.env.TTL },
     },
   },
   {
