@@ -9,6 +9,7 @@
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
+    "prepare": "husky install",
     "prettier": "prettier --write src/",
     "typescript": "tsc --noEmit"
   },
