@@ -1,7 +1,7 @@
 {
-  "name": "noshit_api",
+  "name": "blink_api",
   "version": "0.1.0",
-  "description": "noshit nodejs & express api",
+  "description": "blink nodejs & express api",
   "main": "dist/index.js",
   "scripts": {
     "start": "NODE_ENV=production node dist/index.js",
