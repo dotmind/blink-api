@@ -5,3 +5,5 @@ dist
 .keys
 logs
 Dockerfile
+scripts/deploy_staging.sh
+*.old*

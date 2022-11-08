@@ -33,7 +33,7 @@ export const registerFile = async (req: Request, res: Response, next: NextFuncti
     const path = hasids.encodeHex(file._id.toString());
     file.path = path;
 
-    file.save();
+    await file.save();
     req._path = path;
     /* eslint-enable no-underscore-dangle */
 
