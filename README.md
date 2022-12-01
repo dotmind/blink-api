@@ -64,9 +64,8 @@ Blink is a secure and fast pdf transfer tool. It is a web application that allow
 
 ### Tools used
 
-- [Vite](https://vitejs.dev/)
-- [React Query](https://tanstack.com/query/v4/)
-- [React PDF](https://react-pdf.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Express](https://expressjs.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## License
