@@ -14,5 +14,6 @@ export default async function main() {
     logger.info('✅ Init database success');
   } catch (err) {
     logger.error('❌ Init database failed', err.message);
+    throw new Error(err.message);
   }
 }

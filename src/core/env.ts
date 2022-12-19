@@ -11,6 +11,8 @@ const envSchema = OBJECT.keys({
   API_VERSION: STRING_REQUIRED,
   // DATABASE
   MONGOOSE_URI: STRING_REQUIRED,
+  // SENTRY
+  SENTRY_DSN: STRING_REQUIRED,
 }).unknown();
 
 try {
