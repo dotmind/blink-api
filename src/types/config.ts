@@ -12,6 +12,12 @@ export type CorsConfig = {
   optionsSuccessStatus?: number;
 };
 
+export type SpreadsheetConfigType = {
+  id: string;
+  clientEmail: string;
+  privateKey: string;
+};
+
 type ConfigType = {
   port: number;
   srcPath: string;
@@ -20,6 +26,7 @@ type ConfigType = {
   database: DatabaseConfigType;
   api: ApiConfigType;
   cors: CorsConfig;
+  spreadsheet: SpreadsheetConfigType;
 };
 
 export default ConfigType;
