@@ -44,14 +44,15 @@ export const collect = async (fingerprint: string, path: string, action: Actions
   try {
     const date = new Date();
     const currentMonth = date.toLocaleString('fr-FR', { month: 'long' });
+    const title = `${currentMonth} ${date.getFullYear()}`;
 
     let sheet: GoogleSpreadsheetWorksheet;
     const doc = await getDoc();
 
-    if (!doc.sheetsByTitle[currentMonth]) {
-      sheet = await createSheet(currentMonth);
+    if (!doc.sheetsByTitle[title]) {
+      sheet = await createSheet(title);
     } else {
-      sheet = doc.sheetsByTitle[currentMonth];
+      sheet = doc.sheetsByTitle[title];
     }
 
     await sheet.addRow({
