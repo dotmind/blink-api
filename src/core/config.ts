@@ -1,4 +1,4 @@
-import ConfigType, { ApiConfigType, CorsConfig, DatabaseConfigType } from 'types/config';
+import ConfigType, { ApiConfigType, CorsConfig, DatabaseConfigType, SpreadsheetConfigType } from 'types/config';
 
 const databaseConfig: DatabaseConfigType = {
   mongooseUri: String(process.env.MONGOOSE_URI),
@@ -15,6 +15,12 @@ const corsConfig: CorsConfig = {
   methods: 'GET,POST,DELETE',
 };
 
+const spreadsheetConfig: SpreadsheetConfigType = {
+  id: process.env.G_SPREADSHEET_ID,
+  clientEmail: process.env.G_SPREADSHEET_CLIENT_EMAIL,
+  privateKey: process.env.G_SPREADSHEET_PRIVATE_KEY,
+};
+
 const config: ConfigType = {
   port: Number(String(process.env.PORT)),
   srcPath: isDev ? 'src' : 'dist',
@@ -23,6 +29,7 @@ const config: ConfigType = {
   database: databaseConfig,
   api: apiConfig,
   cors: corsConfig,
+  spreadsheet: spreadsheetConfig,
 };
 
 export default config;

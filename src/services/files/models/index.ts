@@ -31,7 +31,7 @@ const FileSchema = new Schema<IFile>(
   {
     toJSON: {
       transform(_doc, ret) {
-        const { _id, __v, ...rest } = ret;
+        const { _id, ...rest } = ret;
 
         return {
           id: _id,
